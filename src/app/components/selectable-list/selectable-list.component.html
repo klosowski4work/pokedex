@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let element of selectableElements" (click)="elementClicked(element?.body)">
+    {{ element.text }}
+  </li>
+</ul>
