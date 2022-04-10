@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MainPageComponent} from "./main-page.component";
 import {RouterModule, Routes} from "@angular/router";
 import {SelectableListModule} from "../../../components/selectable-list/selectable-list.module";
+import {PaginationModule} from "../../../components/pagination/pagination.module";
+import {PokemonCardModule} from "../../../components/pokemon-card/pokemon-card.module";
 
 const routes: Routes = [
   {
@@ -18,7 +20,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SelectableListModule
+    SelectableListModule,
+    PaginationModule,
+    PokemonCardModule
   ]
 })
 export class MainPageModule { }

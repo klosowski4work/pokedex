@@ -1,0 +1,15 @@
+<div class="pokemon-card" [ngClass]="{'pokemon-card--backface': isRotated}">
+  <div class="pokemon-card__front" >
+    <header> {{ pokemon.name | titlecase }} </header>
+    <div class="pokemon-card__sprite-container">
+      <img class="pokemon-card__sprite" [src]="pokemon.sprite" [attr.alt]="pokemon.sprite"/>
+    </div>
+  </div>
+
+  <div class="pokemon-card__back">
+    <header> {{ pokemon.name | titlecase }} </header>
+    <div class="pokemon-card__sprite-container">
+      <img class="pokemon-card__sprite" [src]="pokemon.sprite" [attr.alt]="pokemon.sprite"/>
+    </div>
+  </div>
+</div>

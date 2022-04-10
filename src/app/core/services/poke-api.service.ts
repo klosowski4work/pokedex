@@ -39,6 +39,6 @@ export class PokeApiService {
   }
 
   getPokemonById(id: number): Observable<PokemonDto> {
-    return this.getPokemon(`${this.baseUrl}/pokemon/${id}`)
+    return this.getPokemon(`${this.baseUrl}/pokemon/${id}/`)
   }
 }

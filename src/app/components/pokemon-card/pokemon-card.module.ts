@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent } from './pagination.component';
+import { PokemonCardComponent } from './pokemon-card.component';
 
 
 
 @NgModule({
     declarations: [
-        PaginationComponent
+        PokemonCardComponent
     ],
     exports: [
-        PaginationComponent
+        PokemonCardComponent
     ],
     imports: [
         CommonModule
     ]
 })
-export class PaginationModule { }
+export class PokemonCardModule { }

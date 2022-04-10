@@ -4,6 +4,8 @@ import {PokemonResultItem} from "../../../core/interafaces/pokemon-result-item.i
 import {SelectableListElementModel} from "../../../components/selectable-list/selectable-list-element.model";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {PokemonModel} from "../../../core/models/pokemon.model";
+import {zip} from "rxjs";
 
 @Component({
   selector: 'app-main-page',
@@ -12,19 +14,27 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MainPageComponent implements OnInit {
   pokemonList: SelectableListElementModel<PokemonResultItem>[] = [];
+  pokemonModelList: PokemonModel[] = [];
 
   constructor(private readonly api: PokeApiService, private readonly router: Router, private readonly http: HttpClient) {
   }
 
   ngOnInit() {
-    this.api.fetchPokemons(undefined, 20).subscribe((res) => {
+    this.api.fetchPokemons(0, 20).subscribe((res) => {
       this.pokemonList = res.results.map(item => new SelectableListElementModel<PokemonResultItem>(item.name, item));
+      const requests$ = res.results.map(item => this.api.getPokemon(item.url));
+
+
+      zip(...requests$).subscribe(pokemonDtoList => {
+        this.pokemonModelList = pokemonDtoList.map(dto => PokemonModel.fromDto(dto));
+        console.log(this.pokemonModelList);
+      })
     });
   }
 
   onPokemonSelect(selectedPokemon: PokemonResultItem) {
-    this.api.getPokemon(selectedPokemon.url).subscribe((res)=> {
-      this.router.navigate(['/details/',res.id])
+    this.api.getPokemon(selectedPokemon.url).subscribe((res) => {
+      this.router.navigate(['/details/', res.id])
     });
   }
 
