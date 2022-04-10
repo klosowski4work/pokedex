@@ -17,7 +17,6 @@ const routes: Routes = [{
     {path: '', redirectTo: 'pokedex', pathMatch: 'full'},
     {path: '**', redirectTo: 'pokedex', pathMatch: 'full'},
   ]
-
 }];
 
 @NgModule({

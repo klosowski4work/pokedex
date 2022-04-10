@@ -1,1 +1,14 @@
-<p>details-page works!</p>
+<h1>
+  {{ pokemon.name | titlecase }}
+</h1>
+
+<div>
+<img [src]="pokemon.sprite" [attr.alt]="pokemon.sprite"/>
+
+
+
+</div>
+
+<pre>
+ {{ pokemon | json }}
+</pre>

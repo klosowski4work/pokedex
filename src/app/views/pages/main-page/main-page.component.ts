@@ -23,13 +23,9 @@ export class MainPageComponent implements OnInit {
   }
 
   onPokemonSelect(selectedPokemon: PokemonResultItem) {
-    // console.log(event)
-
-    this.http.get(selectedPokemon.url).subscribe((res: any )=> {
-      console.log(res);
+    this.api.getPokemon(selectedPokemon.url).subscribe((res)=> {
       this.router.navigate(['/details/',res.id])
-
-    })
+    });
   }
 
 }
