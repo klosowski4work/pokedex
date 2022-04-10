@@ -1,0 +1,20 @@
+@import 'scss/variables';
+
+:host {
+  .selectable-list {
+    display: block;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    &__element {
+      border-radius: 3px;
+      padding: 10px 20px;
+      margin: 5px 0;
+      background-color: $secondary-color;
+      border: 1px solid $border-color;
+    }
+  }
+}
