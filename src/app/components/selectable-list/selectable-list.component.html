@@ -1,6 +1,6 @@
 <ul class="selectable-list">
   <li class="selectable-list__element" *ngFor="let element of selectableElements"
       (click)="elementClicked(element?.body)">
-    {{ element.text }}
+    {{ element.text | titlecase }}
   </li>
 </ul>
