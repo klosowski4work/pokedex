@@ -1,10 +1,10 @@
-<app-selectable-list [selectableElements]="pokemonList" (onElementSelect)="onPokemonSelect($event)">
+<!--<app-selectable-list [selectableElements]="pokemonList" (onElementSelect)="onPokemonSelect($event)">-->
 
-</app-selectable-list>
+<!--</app-selectable-list>-->
 
 <div class="pokemon-cards">
   <app-pokemon-card class="m-10" *ngFor="let pokemon of pokemonModelList" [pokemon]="pokemon"></app-pokemon-card>
 </div>
 
 
-<app-pagination></app-pagination>
+<app-pagination [itemsCount]="pokemonsCount" [offset]="pageOffset" [pageSize]="pageSize" (pageChanged)="onPageChange($event)"></app-pagination>

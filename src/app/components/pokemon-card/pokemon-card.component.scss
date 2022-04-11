@@ -1,11 +1,14 @@
 :host {
+  font-family: "Arial Black";
+  color: #3a3a3e;
   display: block;
   position: relative;
   font-size: 1em;
   width: 20em;
-  height: 30em;
+  height: 28em;
   max-width: 320px;
   max-height: 480px;
+  cursor: pointer;
 
   .pokemon-card {
     position: absolute;
@@ -28,8 +31,33 @@
     }
 
     &__front {
-      background: red;
+      &:before {
+        left: 0;
+        top: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        filter: contrast(120%) brightness(100%) invert(100%);
+        background: linear-gradient(29deg, rgba(20, 187, 241, 0.63), rgba(0, 0, 255, 0.71)),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.59' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      &__hp {
+        color: #a66537;
+      }
+      border: 1em solid #ffe173;
+      padding: 0.5em 1em;
+
+      &__stats {
+        position: relative;
+        list-style-type: none;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding-inline-start: 0;
+      }
     }
+
     &__back {
       transform: rotateY(180deg);
       background-color: blue;
@@ -37,19 +65,36 @@
 
     header {
       position: relative;
-      background: lightgrey;
+      display: flex;
+
+      justify-content: space-between;
     }
 
     &__sprite-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      height: 15em;
-      border: 1px solid black;
+      margin: auto;
+      height: 11.5em;
+      position: relative;
+      border: 6px solid #ffe173;
+      box-shadow: 0 0 1em #333;
+
+      &:before {
+        filter: contrast(190%) brightness(100%);
+        left: 0;
+        top: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: linear-gradient(29deg, rgba(0, 0, 255, 0.71), rgba(20, 187, 241, 0.63)),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.59' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
     }
 
     &__sprite {
+      z-index: 1;
       width: 80%;
       height: 80%;
     }

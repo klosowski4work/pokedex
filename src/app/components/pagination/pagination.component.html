@@ -1,9 +1,15 @@
 
 
-<button (click)="previousPage()">
-  prev
+<button (click)="firstPage()">
+  <<
 </button>
-
+<button (click)="previousPage()">
+  <
+</button>
+{{currentPage + '/' + getLastPage()}}
 <button (click)="nextPage()">
-  next
+  >
+</button>
+<button (click)="lastPage()">
+  >>
 </button>

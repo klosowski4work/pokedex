@@ -1,0 +1,29 @@
+:host {
+  .stat-bar {
+    display: flex;
+    flex-direction: column;
+    &__name {
+      font-size: 0.8em;
+    }
+    &__container{
+      position: relative;
+      width: 100%;
+      height: 0.8em;
+      background: #d3d3d394;
+      border: 1px solid #ffe173;
+      box-shadow: 0 0 1em #c9c9c9;
+
+    }
+    &__value, &__value-outrange{
+      font-size: 0.55em;
+      background-color: #ff0000c7;
+      height: 100%;
+    }
+    &__value-outrange {
+      position: absolute;
+      top:0;
+      background-color: rgba(108, 0, 0, 0.78);
+    }
+
+  }
+}

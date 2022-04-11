@@ -1,0 +1,8 @@
+<div class="stat-bar">
+  <div class="stat-bar__name">{{ name | uppercase }}</div>
+  <div class="stat-bar__container">
+    <div class="stat-bar__value" [ngStyle]="{width: value + '%'}"></div>
+    <div class="stat-bar__value-outrange" [ngStyle]="{width: valueOutrange + '%'}"></div>
+  </div>
+</div>
+

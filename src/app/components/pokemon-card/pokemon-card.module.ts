@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonCardComponent } from './pokemon-card.component';
+import {StatBarModule} from "../stat-bar/stat-bar.module";
 
 
 
@@ -12,7 +13,8 @@ import { PokemonCardComponent } from './pokemon-card.component';
         PokemonCardComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        StatBarModule
     ]
 })
 export class PokemonCardModule { }
