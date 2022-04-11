@@ -15,12 +15,15 @@ export class PokemonCardComponent implements OnInit {
     constructor() {
   }
 
-  @HostListener('click')
   rotate() {
     this.isRotated = !this.isRotated;
   }
 
   ngOnInit(): void {
+  }
+
+  catch(event: MouseEvent){
+      console.log('catch', this.pokemon);
   }
 
 }

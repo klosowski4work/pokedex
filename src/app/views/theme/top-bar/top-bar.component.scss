@@ -1,0 +1,14 @@
+@import "./scss/variables";
+
+:host {
+  top: 0;
+  position: fixed;
+  display: block;
+  width: 100%;
+  padding: $top-bar-padding;
+  height:  $top-bar-height;
+  background: red;
+  z-index: 1;
+  color: #f6f6f6;
+
+}

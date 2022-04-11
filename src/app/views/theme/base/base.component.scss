@@ -1,0 +1,7 @@
+@import './scss/variables';
+
+:host {
+  display: block;
+  padding-top: $top-bar-height;
+  font-family: cursive;
+}

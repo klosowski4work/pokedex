@@ -40,6 +40,6 @@ export class PaginationComponent implements OnInit {
   }
 
   getLastPage() {
-    return Math.ceil(this.itemsCount / this.pageSize)
+    return Math.floor(this.itemsCount / this.pageSize)
   }
 }

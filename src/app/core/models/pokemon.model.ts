@@ -10,9 +10,9 @@ export class PokemonModel {
   static fromDto(dto: PokemonDto): PokemonModel {
     const model = new PokemonModel();
     model.abilities = dto.abilities;
-    model.name = dto.name;
+    model.name = dto.name.split('-')[0];
     model.stats = dto.stats;
-    model.sprite = dto.sprites.other.dream_world.front_default;
+    model.sprite = dto.sprites.other.dream_world.front_default || dto.sprites.front_default;
     model.types = dto.types;
     return model;
   }
