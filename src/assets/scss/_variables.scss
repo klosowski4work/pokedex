@@ -3,3 +3,29 @@ $border-color: #d3d3d3;
 
 $top-bar-padding: 1em;
 $top-bar-height: 5em;
+
+$noise-data: "data:image/svg+xml,%3Csvg viewBox='0 0 18 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.59' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E";
+$card-textures: (
+  "gold": (linear-gradient(29deg, rgba(20, 187, 241, 0.63), rgba(0, 0, 255, 0.71)), url($noise-data)),
+  "blue": (linear-gradient(29deg, rgba(20, 187, 241, 0.63), rgba(0, 0, 255, 0.71)), url($noise-data)),
+  "brown": (linear-gradient(29deg, rgba(241, 145, 20, 0.63), rgba(185, 73, 0, 0.71)), url($noise-data)),
+  "gray": (linear-gradient(29deg, rgba(217, 213, 211, 0.63), rgba(61, 61, 61, 0.71)), url($noise-data)),
+  "pink": (linear-gradient(29deg, rgba(255, 176, 228, 0.63), rgba(227, 22, 255, 0.71)), url($noise-data)),
+  "purple": (linear-gradient(29deg, rgba(157, 137, 253, 0.63), rgba(62, 21, 145, 0.71)), url($noise-data)),
+  "red": (linear-gradient(29deg, rgba(255, 0, 0, 0.63), rgba(136, 0, 0, 0.71)), url($noise-data)),
+  "white": (linear-gradient(29deg, rgba(215, 215, 215, 0.69), rgba(199, 199, 199, 0.71)), url($noise-data)),
+  "yellow": (linear-gradient(29deg, rgba(255, 244, 127, 0.69), rgba(252, 212, 9, 0.71)), url($noise-data)),
+  "green": (linear-gradient(29deg, rgba(131, 255, 127, 0.69), rgba(22, 101, 6, 0.71)), url($noise-data)),
+)
+
+
+//Black = "black",
+//Blue = "blue",
+//Brown = "brown",
+//Gray = "gray",
+//Green = "green",
+//Pink = "pink",
+//Purple = "purple",
+//Red = "red",
+//White = "white",
+//Yellow = "yellow",

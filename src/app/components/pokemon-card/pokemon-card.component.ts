@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PokemonModel} from "../../core/models/pokemon.model";
 
 @Component({
@@ -6,24 +6,21 @@ import {PokemonModel} from "../../core/models/pokemon.model";
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.scss']
 })
-export class PokemonCardComponent implements OnInit {
+export class PokemonCardComponent {
   @Input()
   pokemon = new PokemonModel();
 
   isRotated = false;
 
-    constructor() {
-  }
-
+get className(){
+  return { 'pokemon-card--backface': this.isRotated, [`pokemon-card--${this.pokemon.species.color}`]: true };
+}
   rotate() {
     this.isRotated = !this.isRotated;
   }
 
-  ngOnInit(): void {
-  }
-
-  catch(event: MouseEvent){
-      console.log('catch', this.pokemon);
+  catch(event: MouseEvent) {
+    console.log('catch', this.pokemon);
   }
 
 }
