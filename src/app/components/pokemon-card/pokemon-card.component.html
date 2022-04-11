@@ -1,6 +1,6 @@
 <div class="pokemon-card" [ngClass]="{'pokemon-card--backface': isRotated}" (click)="rotate()">
 
-  <div class="pokemon-card__front" >
+  <div class="pokemon-card__front">
     <header>
       <div>{{ pokemon.name | titlecase }} </div>
       <div class="pokemon-card__front__hp">HP {{ pokemon.stats[0].base_stat }}</div>
@@ -8,18 +8,25 @@
     <div class="pokemon-card__sprite-container">
       <img class="pokemon-card__sprite" [src]="pokemon.sprite" [attr.alt]="pokemon.sprite"/>
     </div>
-    <ul class="pokemon-card__front__stats">
-      <li *ngFor="let stat of pokemon.stats">
-        <app-stat-bar [value]="stat.base_stat" [name]="stat.stat.name"></app-stat-bar>
-      <div class="pokemon-card__front__stats__bar"></div>
-    </li>
-
-    </ul>
+    <div class="pokemon-card__egg-groups">
+      <app-badge *ngFor="let eggGroup of pokemon.species.eggGroups" [value]="eggGroup | titlecase" [color]="'red'"></app-badge>
+    </div>
+    <div class="pokemon-card__description">
+      <span>{{pokemon.species.flavorText}}</span>
+    </div>
 
   </div>
 
   <div class="pokemon-card__back">
-    <button (click)="catch($event)">Catch</button>
     <img class="pokemon-card__sprite" [src]="pokemon.sprite" [attr.alt]="pokemon.sprite"/>
+    <section>
+      <ul class="pokemon-card__stats">
+        <li *ngFor="let stat of pokemon.stats">
+          <app-stat-bar [value]="stat.base_stat" [name]="stat.stat.name"></app-stat-bar>
+          <div class="pokemon-card__front__stats__bar"></div>
+        </li>
+      </ul>
+      <button (click)="catch($event)">Catch</button>
+    </section>
   </div>
 </div>

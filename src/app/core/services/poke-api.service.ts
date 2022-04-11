@@ -5,13 +5,14 @@ import {Observable, of, tap} from "rxjs";
 import {PokemonResponse} from "../dto/pokemon.response";
 import {PokeapiConfigInterface} from "../interafaces/pokeapi-config.interface";
 import {PokemonDto} from "../dto";
+import {SpeciesDto} from "../dto/pokemon-species.dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeApiService {
   cachedPokemons = new Map<string, PokemonDto>();
-
+  cachedPokemonSpecies = new Map<string, SpeciesDto>();
   constructor(
     private readonly httpClient: HttpClient,
     @Inject(POKEAPI_URL) private readonly baseUrl: string,
@@ -36,6 +37,15 @@ export class PokeApiService {
     return this.httpClient.get<PokemonDto>(url).pipe(tap(pokemon => {
       this.cachedPokemons.set(url, pokemon);
     }));
+  }
+
+  getPokemonSpecies(url: string): Observable<SpeciesDto> {
+    if (this.cachedPokemonSpecies.has(url)) {
+      return of(this.cachedPokemonSpecies.get(url) as SpeciesDto);
+    }
+    return this.httpClient.get<SpeciesDto>(url).pipe(tap(species => {
+      this.cachedPokemonSpecies.set(url, species);
+    }))
   }
 
   getPokemonById(id: number): Observable<PokemonDto> {

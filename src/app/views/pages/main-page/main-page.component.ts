@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {PokemonModel} from "../../../core/models/pokemon.model";
 import {zip} from "rxjs";
+import {SpeciesModel} from "../../../core/models/species.model";
 
 @Component({
   selector: 'app-main-page',
@@ -18,7 +19,7 @@ export class MainPageComponent implements OnInit {
   readonly pageSize = 20;
   pokemonsCount = 0;
   pageOffset = 0;
-
+  currentPage = 1;
 
   constructor(private readonly api: PokeApiService, private readonly router: Router, private readonly http: HttpClient) {
   }
@@ -34,14 +35,23 @@ export class MainPageComponent implements OnInit {
       this.pokemonsCount = res.count;
 
       zip(...requests$).subscribe(pokemonDtoList => {
-        this.pokemonModelList = pokemonDtoList.map(dto => PokemonModel.fromDto(dto));
+        this.pokemonModelList = pokemonDtoList.map(dto => {
+          const pokemonModel = PokemonModel.fromDto(dto)
+          this.api.getPokemonSpecies(dto.species.url).subscribe(res => {
+            pokemonModel.species = SpeciesModel.fromDto(res);
+          })
+          return pokemonModel;
+        });
+
         console.log(this.pokemonModelList);
       })
     });
   }
 
   onPageChange(page: number) {
-    this.fetchPokemons(this.pageSize * page - 1)
+    this.pageOffset = this.pageSize * page - 1;
+    this.fetchPokemons(this.pageOffset);
+    this.currentPage = page;
     console.log('currentPage', event);
   }
 
