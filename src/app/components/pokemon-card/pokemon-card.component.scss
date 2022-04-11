@@ -12,6 +12,7 @@
   max-height: 480px;
   cursor: pointer;
   text-shadow: 1px 1px 1px #fff;
+
   .pokemon-card {
     position: absolute;
     width: 100%;
@@ -24,7 +25,9 @@
       &--#{$name} {
         .pokemon-card {
           &__front, &__back {
-            background: $texture;
+            &:before {
+              background: $texture;
+            }
           }
         }
       }
