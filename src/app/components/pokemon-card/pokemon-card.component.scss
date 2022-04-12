@@ -11,6 +11,7 @@
   max-width: 320px;
   max-height: 480px;
   cursor: pointer;
+  margin-bottom: 1.5em;
   text-shadow: 1px 1px 1px #fff;
 
   .pokemon-card {
@@ -20,6 +21,50 @@
     transition: all ease 1s;
     transform-style: preserve-3d;
     transform: perspective(500px);
+
+    &--rotate,
+    &--loading {
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: progress;
+        z-index: 2;
+        background: linear-gradient(0.25turn, transparent, #fff, transparent);
+        background-repeat: no-repeat;
+        background-size: 100% 100%, 100% 180px, 100px 100px, 225px 30px;
+        background-position: -320px 0;
+        animation: loading 0.8s infinite;
+      }
+    }
+    &--loading {
+      .pokemon-card {
+        &__front, &__back {
+          &:before {
+            background: map-get($card-textures, "gold") !important;
+          }
+        }
+        &__sprite {
+          visibility: hidden;
+        }
+        &__description {
+          span {
+            visibility: hidden;
+          }
+        }
+        &__egg-groups {
+          visibility: hidden;
+        }
+      }
+
+    }
+
+    &--rotate {
+      background: linear-gradient(0.25turn, transparent, #fff, transparent);
+      animation: loading 0.5s alternate-reverse;
+    }
+
 
     @each $name, $texture in $card-textures {
       &--#{$name} {
@@ -31,10 +76,11 @@
           }
         }
       }
-    }
 
+    }
     &--backface {
       transform: rotateY(180deg);
+
       .pokemon-card__front {
         pointer-events: none;
       }
@@ -72,6 +118,7 @@
       height: 125px;
       margin-top: 20px;
       font-size: 12px;
+
       &:before {
         content: '';
         display: block;
@@ -82,6 +129,7 @@
         height: 100%;
         filter: blur(5px);
       }
+
       span {
         position: absolute;
         padding: 10px;
@@ -146,6 +194,7 @@
     &__egg-groups {
       position: relative;
       margin-top: 0.5em;
+      height: 1.5em;
     }
 
     &__sprite {
@@ -153,5 +202,19 @@
       width: 80%;
       height: 80%;
     }
+
+    &__poke-ball {
+      display: flex;
+      font-size: 2em;
+      margin: 1em auto;
+      justify-content: center;
+    }
   }
 }
+
+@keyframes loading {
+  to {
+    background-position: 315px 0, 0 0, 0 190px, 50px 195px;
+  }
+}
+

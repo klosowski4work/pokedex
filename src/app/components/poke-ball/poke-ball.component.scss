@@ -1,0 +1,61 @@
+:host {
+  position: relative;
+  display: block;
+  .poke-ball {
+    display: block;
+    width: 4em;
+    height: 4em;
+    border: 3px solid black;
+    border-radius: 4em;
+    background: white;
+    position: relative;
+    overflow: hidden;
+    &:before {
+      content: '';
+      background: red;
+      width: 4em;
+      height: 2em;
+      position: absolute;
+      bottom: -3px;
+      border-top: 3px solid black;
+    }
+    &:after {
+      content: "";
+      background: white;
+      width: 0.5em;
+      height: 0.5em;
+      position: absolute;
+      border: 3px solid black;
+      border-radius: 0.5em;
+      bottom: 40%;
+      left: 50%;
+    }
+
+    &--shake {
+      animation: shake 0.5s infinite;
+      transform-origin: bottom;
+    }
+    &__caught {
+      position: absolute;
+      top: 0.8em;
+      font-size: 1.5em;
+      transform: rotate(341deg);
+      color: #fff931;
+      text-shadow: 2px 2px 7px black;
+    }
+    &__failed {
+      position: absolute;
+      top: 0.8em;
+      font-size: 1.5em;
+      transform: rotate(341deg);
+      color: #ff3131;
+      text-shadow: 2px 2px 7px black;
+    }
+  }
+}
+
+@keyframes shake {
+  from { transform: rotateZ(20deg); }
+  50%  { transform: rotateZ(-20deg); }
+  to   { transform: rotateZ(20deg); }
+}

@@ -3,10 +3,11 @@
 <!--</app-selectable-list>-->
 <ng-container [ngTemplateOutlet]="pagination"></ng-container>
 <div class="pokemon-cards">
-  <app-pokemon-card class="m-10" *ngFor="let pokemon of pokemonModelList" [pokemon]="pokemon"></app-pokemon-card>
+  <app-pokemon-card *ngFor="let pokemon of pokemonModelList" [pokemon]="pokemon" [loading]="loading"></app-pokemon-card>
 </div>
 <ng-container [ngTemplateOutlet]="pagination"></ng-container>
 
 <ng-template #pagination>
   <app-pagination [currentPage]="currentPage" [itemsCount]="pokemonsCount" [offset]="pageOffset" [pageSize]="pageSize" (pageChanged)="onPageChange($event)"></app-pagination>
+  <hr>
 </ng-template>

@@ -17,14 +17,17 @@ export class PaginationComponent {
     this.pageChanged.emit(this.currentPage);
   }
 
-  nextPage() {
-    this.currentPage = this.currentPage + 1;
+  previousPage() {
+    this.currentPage = this.currentPage > 1 ? this.currentPage - 1 : this.currentPage;
     this.pageChanged.emit(this.currentPage);
   }
 
-  previousPage() {
-    this.currentPage = this.currentPage - 1;
-    this.pageChanged.emit(this.currentPage);
+  nextPage() {
+    if(this.currentPage + 1 > this.getLastPage()){
+      return;
+    }
+    this.currentPage = this.currentPage + 1 ;
+      this.pageChanged.emit(this.currentPage);
   }
 
   lastPage() {

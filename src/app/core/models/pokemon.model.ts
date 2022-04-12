@@ -3,7 +3,7 @@ import {SpeciesModel} from "./species.model";
 
 export class PokemonModel {
   abilities: Ability[] = [];
-  name: string = '';
+  name: string = 'Pokemon';
   stats: Stat[] = [];
   sprite: string = '';
   types: Type[] = [];

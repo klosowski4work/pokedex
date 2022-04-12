@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PokemonCardComponent } from './pokemon-card.component';
 import {StatBarModule} from "../stat-bar/stat-bar.module";
 import {BadgeModule} from "../badge/badge.module";
+import {PokeBallModule} from "../poke-ball/poke-ball.module";
 
 
 
@@ -13,10 +14,11 @@ import {BadgeModule} from "../badge/badge.module";
     exports: [
         PokemonCardComponent
     ],
-  imports: [
-    CommonModule,
-    StatBarModule,
-    BadgeModule
-  ]
+    imports: [
+        CommonModule,
+        StatBarModule,
+        BadgeModule,
+        PokeBallModule
+    ]
 })
 export class PokemonCardModule { }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {PokemonModel} from "../../core/models/pokemon.model";
 
 @Component({
@@ -9,18 +9,33 @@ import {PokemonModel} from "../../core/models/pokemon.model";
 export class PokemonCardComponent {
   @Input()
   pokemon = new PokemonModel();
-
+  rotating = false;
   isRotated = false;
 
-get className(){
-  return { 'pokemon-card--backface': this.isRotated, [`pokemon-card--${this.pokemon.species.color}`]: true };
-}
+  @ViewChild('pokeball')
+  pokeball!: ElementRef<HTMLDivElement>;
+
+  @Input()
+  loading = false;
+
+
+  get className() {
+    return {
+      'pokemon-card--backface': this.isRotated,
+      'pokemon-card--rotate': this.rotating,
+      'pokemon-card--loading': this.loading,
+      [`pokemon-card--${this.pokemon.species.color}`]: true
+    };
+  }
+
   rotate() {
+    this.rotating = true;
+    setTimeout(() => this.rotating = false, 300);
     this.isRotated = !this.isRotated;
   }
 
-  catch(event: MouseEvent) {
-    console.log('catch', this.pokemon);
+  catch() {
+    console.log(this.pokemon);
   }
 
 }

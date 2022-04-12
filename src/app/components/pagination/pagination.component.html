@@ -1,15 +1,15 @@
-
-
-<button (click)="firstPage()">
+<button class="pagination__button" (click)="firstPage()">
   <<
 </button>
-<button (click)="previousPage()">
+<button class="pagination__button" (click)="previousPage()">
   <
 </button>
-{{currentPage + '/' + getLastPage()}}
-<button (click)="nextPage()">
+<div class="pagination__page">
+  {{currentPage + '/' + getLastPage()}}
+</div>
+<button class="pagination__button" (click)="nextPage()">
   >
 </button>
-<button (click)="lastPage()">
+<button class="pagination__button" (click)="lastPage()">
   >>
 </button>
