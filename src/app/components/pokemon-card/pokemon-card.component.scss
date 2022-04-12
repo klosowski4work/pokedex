@@ -20,7 +20,7 @@
     height: 100%;
     transition: all ease 1s;
     transform-style: preserve-3d;
-    transform: perspective(500px);
+    transform: perspective(500px);sss
 
     &--rotate,
     &--loading {
@@ -87,6 +87,11 @@
     }
 
     &__front, &__back {
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      width: 80%;
+      height: 80%;
+      perspective: 300px;
       &:before {
         left: 0;
         top: 0;
@@ -109,6 +114,16 @@
     &__front {
       &__hp {
         color: #a66537;
+      }
+      .pokemon-card {
+        &__sprite-container {
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          img {
+            transform: translateZ(5px);
+            backface-visibility: hidden;
+          }
+        }
       }
     }
 
@@ -174,10 +189,12 @@
       justify-content: center;
       align-items: center;
       margin: auto;
+      margin-top: 8px;
       height: 11.5em;
       position: relative;
       border: 6px solid #ffe173;
       box-shadow: 0 0 1em #333;
+      transform: translateZ(5px);
 
       &:before {
         filter: contrast(190%) brightness(100%);
