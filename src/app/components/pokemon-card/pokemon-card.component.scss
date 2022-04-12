@@ -35,7 +35,6 @@
 
     &--backface {
       transform: rotateY(180deg);
-
       .pokemon-card__front {
         pointer-events: none;
       }

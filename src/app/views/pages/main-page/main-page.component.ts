@@ -42,8 +42,6 @@ export class MainPageComponent implements OnInit {
           })
           return pokemonModel;
         });
-
-        console.log(this.pokemonModelList);
       })
     });
   }
@@ -52,7 +50,6 @@ export class MainPageComponent implements OnInit {
     this.pageOffset = this.pageSize * page - 1;
     this.fetchPokemons(this.pageOffset);
     this.currentPage = page;
-    console.log('currentPage', event);
   }
 
   onPokemonSelect(selectedPokemon: PokemonResultItem) {
