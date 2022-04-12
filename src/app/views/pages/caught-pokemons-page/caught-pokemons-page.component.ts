@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {PokeApiService} from "../../../core/services/poke-api.service";
+import {PokeApiService} from "../../../core/services";
 import {PokemonResultItem} from "../../../core/interafaces/pokemon-result-item.interface";
 import {SelectableListElementModel} from "../../../components/selectable-list/selectable-list-element.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PokemonModel} from "../../../core/models/pokemon.model";
 import {zip} from "rxjs";
 import {SpeciesModel} from "../../../core/models/species.model";
+import {CaughtPokemonService} from "../../../core/services/caught-pokemon.service";
 
 @Component({
   selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+  templateUrl: './caught-pokemons-page.component.html',
+  styleUrls: ['./caught-pokemons-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class CaughtPokemonsPageComponent implements OnInit {
   readonly pageSize = 20;
-  pokemonList: SelectableListElementModel<PokemonResultItem>[] = [];
   pokemonModelList: PokemonModel[] = Array(this.pageSize).fill(new PokemonModel());
   pokemonsCount = 0;
   pageOffset = 0;
@@ -24,7 +24,8 @@ export class MainPageComponent implements OnInit {
   constructor(
     private readonly api: PokeApiService,
     private readonly router: Router,
-    private readonly activeRoute: ActivatedRoute
+    private readonly activeRoute: ActivatedRoute,
+    private readonly caughtPokemonsService: CaughtPokemonService
   ) {
   }
 
@@ -32,30 +33,28 @@ export class MainPageComponent implements OnInit {
     this.activeRoute.queryParamMap.subscribe((q) => {
       const page = parseInt(q.get('page') || '0', 10);
       const offset = page * this.pageSize;
-      this.fetchPokemons(offset);
+      this.fetchPokemons();
     });
   }
 
-  fetchPokemons(offset: number) {
+  fetchPokemons() {
     this.loading = true;
-    this.api.fetchPokemons(offset, this.pageSize).subscribe((res) => {
-      this.pokemonList = res.results.map(item => new SelectableListElementModel<PokemonResultItem>(item.name, item));
-      const requests$ = res.results.map(item => this.api.getPokemon(item.url));
-      this.pokemonsCount = res.count;
+    const pokemonIds = this.caughtPokemonsService.getCaughtPokemons();
+    this.pokemonsCount = pokemonIds.length;
+    const requests$ = pokemonIds.map(id => this.api.getPokemonById(id))
 
-      zip(...requests$).subscribe(pokemonDtoList => {
-        this.pokemonModelList = pokemonDtoList.map(dto => {
-          const pokemonModel = PokemonModel.fromDto(dto)
-          this.api.getPokemonSpecies(dto.species.url).subscribe(res => {
-            pokemonModel.species = SpeciesModel.fromDto(res);
-          })
-          return pokemonModel;
-        });
-        setTimeout(() => {
-          this.loading = false
-        }, 1000);
-      })
-    });
+    zip(...requests$).subscribe(pokemonDtoList => {
+      this.pokemonModelList = pokemonDtoList.map(dto => {
+        const pokemonModel = PokemonModel.fromDto(dto)
+        this.api.getPokemonSpecies(dto.species.url).subscribe(res => {
+          pokemonModel.species = SpeciesModel.fromDto(res);
+        })
+        return pokemonModel;
+      });
+      setTimeout(() => {
+        this.loading = false
+      }, 1000);
+    })
   }
 
   onPageChange(page: number) {
@@ -63,5 +62,4 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(['/pokedex'], {queryParams: {page}});
     this.currentPage = page;
   }
-
 }

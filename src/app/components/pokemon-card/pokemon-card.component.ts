@@ -1,5 +1,6 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PokemonModel} from "../../core/models/pokemon.model";
+import {CaughtPokemonService} from "../../core/services/caught-pokemon.service";
 
 @Component({
   selector: 'app-pokemon-card',
@@ -12,11 +13,11 @@ export class PokemonCardComponent {
   rotating = false;
   isRotated = false;
 
-  @ViewChild('pokeball')
-  pokeball!: ElementRef<HTMLDivElement>;
-
   @Input()
   loading = false;
+
+  constructor(private readonly caughtPokemonService: CaughtPokemonService) {
+  }
 
 
   get className() {
@@ -35,7 +36,10 @@ export class PokemonCardComponent {
   }
 
   catch() {
-    console.log(this.pokemon);
+    this.caughtPokemonService.caught(this.pokemon.id);
   }
 
+  isCaught(): boolean {
+    return this.caughtPokemonService.isCaught(this.pokemon.id);
+  }
 }

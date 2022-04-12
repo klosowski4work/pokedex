@@ -27,7 +27,7 @@
           <div class="pokemon-card__front__stats__bar"></div>
         </li>
       </ul>
-      <app-poke-ball class="pokemon-card__poke-ball" (onCaught)="catch()"></app-poke-ball>
+      <app-poke-ball class="pokemon-card__poke-ball" [caught]="isCaught()" (onCaught)="catch()"></app-poke-ball>
     </section>
   </div>
 </div>

@@ -42,6 +42,7 @@
       transform: rotate(341deg);
       color: #fff931;
       text-shadow: 2px 2px 7px black;
+      z-index: 1;
     }
     &__failed {
       position: absolute;
@@ -50,6 +51,14 @@
       transform: rotate(341deg);
       color: #ff3131;
       text-shadow: 2px 2px 7px black;
+      z-index: 1;
+    }
+    &__shadow {
+      position: absolute;
+      width: 4em;
+      height: 5em;
+      background: radial-gradient(circle at 10% 90%, #00000061, rgb(255 255 255 / 0%));
+      z-index: 1;
     }
   }
 }

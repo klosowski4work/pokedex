@@ -1,3 +1,5 @@
-<div *ngIf="!failed" (click)="!caught && clicked()" class="poke-ball" [ngClass]="{'poke-ball--shake': shake}"></div>
+<div *ngIf="!failed" (click)="!caught && clicked()" class="poke-ball" [ngClass]="{'poke-ball--shake': shake}">
+  <div class="poke-ball__shadow"></div>
+</div>
 <div *ngIf="caught" class="poke-ball__caught">Caught</div>
 <div *ngIf="failed" class="poke-ball__failed">Failed</div>
